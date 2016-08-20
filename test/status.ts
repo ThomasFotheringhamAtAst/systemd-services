@@ -9,8 +9,8 @@ const ns = new SysService()
 
 
 
-describe("statuses", function () {
-    it("a working process return a status that is active", function (done) {
+describe("statuses", () => {
+    it("a working process return a status that is active", (done) => {
         ns.status('networking').then((a: any) => {
 
             expect(a).to.be.ok;
@@ -25,7 +25,7 @@ describe("statuses", function () {
         })
     })
 
-    it("a foreign service return a non active status", function (done) {
+    it("a foreign service return a non active status", (done) => {
         ns.status('lkgklglgoiuguoig').then((a: any) => {
 
             expect(a).to.be.ok;
