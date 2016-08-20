@@ -27,13 +27,15 @@ export default class SysService {
                 if (stderr) {
                     //   console.error(stderr)
                 }
-                if (err) {
+                if (!stdout) {
                     reject(err)
                 } else {
 
                     let outperline = stdout.split('\n')
 
-                    const status = <IStatus>{}
+                    const status = <IStatus>{
+                        active:false
+                    }
 
                     for (let i = 0; i < outperline.length; i++) {
                         let line = outperline[i];
