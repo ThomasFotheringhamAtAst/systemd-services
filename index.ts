@@ -34,7 +34,7 @@ export default class SysService {
                     let outperline = stdout.split('\n')
 
                     const status = <IStatus>{
-                        active:false
+                        active: false
                     }
 
                     for (let i = 0; i < outperline.length; i++) {
@@ -55,6 +55,26 @@ export default class SysService {
         })
     }
 
+
+    isActive(service: string): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+            exec('systemctl is-active ' + service, (err, stdout, stderr) => {
+                if (stderr) {
+                    console.error(stderr)
+                }
+
+
+                if (stdout.split('\n')[0] === 'active') {
+                    resolve(true)
+
+                } else {
+                    resolve(false)
+
+                }
+
+            })
+        })
+    }
 
     start(service: string): Promise<boolean> {
         return new Promise<boolean>((resolve, reject) => {

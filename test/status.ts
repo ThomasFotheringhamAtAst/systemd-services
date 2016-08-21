@@ -15,7 +15,7 @@ describe("statuses", () => {
 
             expect(a).to.be.ok;
             expect(a).to.be.an('object');
-            expect(a.active).to.be.a('boolean').that.is.eq(true);
+            expect(a.active).to.be.a('boolean').that.equal(true);
             expect(a.active_status).to.be.a('string');
 
             done()
@@ -27,10 +27,9 @@ describe("statuses", () => {
 
     it("a foreign service return a non active status", (done) => {
         ns.status('lkgklglgoiuguoig').then((a: any) => {
-
             expect(a).to.be.ok;
             expect(a).to.be.an('object');
-            expect(a.active).to.be.a('boolean').that.is.eq(false);
+            expect(a.active).to.be.a('boolean').that.equal(false);
             expect(a.active_status).to.be.a('string');
 
             done()
@@ -43,4 +42,31 @@ describe("statuses", () => {
 
 })
 
+
+
+
+describe("is-active", () => {
+    it("an active service return true", (done) => {
+        ns.isActive('networking').then((a: any) => {
+
+            expect(a).to.be.ok;
+            expect(a).to.be.a('boolean').that.equal(true);
+
+            done()
+
+        }).catch((err) => {
+            done(Error(err))
+        })
+    })
+
+    it("a foreign or inactive service return false", (done) => {
+        ns.isActive('jrejoreig').then((a: any) => {
+            expect(a).to.be.a('boolean').that.equal(false);
+            done()
+        }).catch((err) => {
+            done(Error(err))
+        })
+    })
+
+})
 
