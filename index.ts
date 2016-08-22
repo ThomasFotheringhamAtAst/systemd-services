@@ -31,7 +31,7 @@ export default class SysService {
                     reject(err)
                 } else {
 
-                    let outperline = stdout.split('\n')
+                    let outperline = stdout.toString().split('\n')
 
                     const status = <IStatus>{
                         active: false
@@ -64,7 +64,7 @@ export default class SysService {
                 }
 
 
-                if (stdout.split('\n')[0] === 'active') {
+                if (stdout.toString().split('\n')[0] === 'active') {
                     resolve(true)
 
                 } else {
